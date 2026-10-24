@@ -1,0 +1,109 @@
+﻿<Window x:Class="Lab_6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Lab_6"
+        Title="Список студентів" Height="600" Width="900">
+
+    <Window.Resources>
+
+        <!-- Усі кнопки -->
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="8,2"/>
+        </Style>
+
+        <!-- Усі поля введення -->
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+
+        <!-- Усі звичайні підписи -->
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Окремий стиль для заголовка секції -->
+        <Style x:Key="HeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <!-- Вузькі поля для оцінок і мінімального балу -->
+        <Style x:Key="NarrowTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Width" Value="60"/>
+        </Style>
+
+        <!-- DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верх: поля введення -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Додати студента" Style="{StaticResource HeaderStyle}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="ПІБ:"/>
+                <TextBox x:Name="FullNameTextBox" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Група:"/>
+                <TextBox x:Name="GroupTextBox" Grid.Row="0" Grid.Column="3"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Оцінки (1, 2, 3):"/>
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="Exam1TextBox" Style="{StaticResource NarrowTextBox}"/>
+                    <TextBox x:Name="Exam2TextBox" Style="{StaticResource NarrowTextBox}"/>
+                    <TextBox x:Name="Exam3TextBox" Style="{StaticResource NarrowTextBox}"/>
+                </StackPanel>
+            </Grid>
+
+            <Button x:Name="AddButton" Content="Додати студента" Click="AddButton_Click"/>
+        </StackPanel>
+
+        <!-- Центр: таблиця -->
+        <DataGrid x:Name="StudentsDataGrid" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="*"/>
+                <DataGridTextColumn Header="Група" Binding="{Binding GroupNumber}" Width="Auto"/>
+                <DataGridTextColumn Header="Іспит 1" Binding="{Binding Exam1}" Width="Auto"/>
+                <DataGridTextColumn Header="Іспит 2" Binding="{Binding Exam2}" Width="Auto"/>
+                <DataGridTextColumn Header="Іспит 3" Binding="{Binding Exam3}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Низ: кнопки та фільтр -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Мінімальний бал:"/>
+            <TextBox x:Name="MinGradeTextBox" Text="60" Style="{StaticResource NarrowTextBox}"/>
+            <Button x:Name="FilterButton" Content="Фільтр" Click="FilterButton_Click"/>
+            <Button x:Name="ResetButton" Content="Скинути" Click="ResetButton_Click"/>
+            <Button x:Name="DeleteButton" Content="Видалити" Click="DeleteButton_Click"/>
+            <Button x:Name="SortButton" Content="Сортувати за групою" Click="SortButton_Click"/>
+            <Button x:Name="LoadButton" Content="Завантажити" Click="LoadButton_Click"/>
+            <Button x:Name="SaveButton" Content="Зберегти" Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

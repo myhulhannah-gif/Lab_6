@@ -1,0 +1,72 @@
+[
+  {
+    "FullName": "Іваненко Марія Петрівна",
+    "GroupNumber": "КН-32",
+    "Exam1": 85,
+    "Exam2": 90,
+    "Exam3": 78
+  },
+  {
+    "FullName": "Петренко Олег Іванович",
+    "GroupNumber": "КН-31",
+    "Exam1": 60,
+    "Exam2": 70,
+    "Exam3": 65
+  },
+  {
+    "FullName": "Коваленко Анна Сергіївна",
+    "GroupNumber": "АНД-31",
+    "Exam1": 95,
+    "Exam2": 92,
+    "Exam3": 90
+  },
+  {
+    "FullName": "Мельник Ігор Олегович",
+    "GroupNumber": "КН-31",
+    "Exam1": 85,
+    "Exam2": 50,
+    "Exam3": 90
+  },
+  {
+    "FullName": "Шевченко Дмитро Андрійович",
+    "GroupNumber": "КН-32",
+    "Exam1": 72,
+    "Exam2": 68,
+    "Exam3": 75
+  },
+  {
+    "FullName": "Бондаренко Ольга Василівна",
+    "GroupNumber": "АНД-31",
+    "Exam1": 100,
+    "Exam2": 98,
+    "Exam3": 95
+  },
+  {
+    "FullName": "Ткаченко Максим Юрійович",
+    "GroupNumber": "КН-32",
+    "Exam1": 55,
+    "Exam2": 70,
+    "Exam3": 80
+  },
+  {
+    "FullName": "Кравченко Софія Миколаївна",
+    "GroupNumber": "КН-31",
+    "Exam1": 91,
+    "Exam2": 94,
+    "Exam3": 90
+  },
+  {
+    "FullName": "Олійник Андрій Павлович",
+    "GroupNumber": "АНД-31",
+    "Exam1": 40,
+    "Exam2": 58,
+    "Exam3": 61
+  },
+  {
+    "FullName": "Савченко Наталія Іванівна",
+    "GroupNumber": "КН-32",
+    "Exam1": 88,
+    "Exam2": 79,
+    "Exam3": 83
+  }
+]
