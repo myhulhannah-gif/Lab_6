@@ -86,30 +86,30 @@ namespace Lab_6
             _catalog.ResetFilter();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)    // обробник кнопки "Знайти"; sender - кнопка, e - дані події (нам не потрібні)
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            _catalog.SearchStudents(SearchTextBox.Text);                     // передаємо в каталог текст із поля пошуку; таблиця оновиться сама
+            _catalog.SearchStudents(SearchTextBox.Text);
         }
 
         private void UniqueGroupsButton_Click(object sender, RoutedEventArgs e)
         {
-            _catalog.ShowUniqueGroups();                                     // викликаємо метод, що виводить унікальні групи в таблицю
+            _catalog.ShowUniqueGroups();
         }
 
         private void TopThreeButton_Click(object sender, RoutedEventArgs e)
         {
-            _catalog.FindThreeBestStudents();                                // показуємо трьох найкращих студентів
+            _catalog.FindThreeBestStudents();
         }
 
         private void AverageButton_Click(object sender, RoutedEventArgs e)
         {
-            double avg = _catalog.CalculateAverageGrade();                   // отримуємо середній бал як число
-            MessageBox.Show($"Середній бал: {avg:F2}");                      // показуємо вікно з повідомленням; {avg:F2} - число з двома знаками після коми
+            double avg = _catalog.CalculateAverageGrade();
+            MessageBox.Show($"Середній бал: {avg:F2}");
         }
 
         private void GroupButton_Click(object sender, RoutedEventArgs e)
         {
-            _catalog.GroupStudentsByGroup();                                 // групуємо студентів за номером групи
+            _catalog.GroupStudentsByGroup();
         }
 
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
