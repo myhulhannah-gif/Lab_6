@@ -28,7 +28,7 @@ namespace Lab_6_Tests
             Assert.ThrowsException<ArgumentException>(() => new Student(invalidName, "КН-32", 80, 80, 80));
         }
 
-        // Ввалідація номера групи: нуль і від'ємне число
+        // Ввалідація номера групи: null, порожній рядок і рядок з пробілу
         [TestMethod]
         [DataRow(null)]
         [DataRow("")]

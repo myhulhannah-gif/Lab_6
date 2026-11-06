@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
+    // Клас для запису списку об'єктів у JSON-файл
     public class JsonFileWriter : IFileSaver
     {
         public async Task SaveAsync<T>(string filePath, List<T> data)
@@ -18,8 +19,10 @@ namespace Lab_6
                 Directory.CreateDirectory(directoryPath);
             }
 
+            // Перетворення даних на JSON-формат
             var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
 
+            // Запис тексту у файл
             await File.WriteAllTextAsync(filePath, json);
         }
     }

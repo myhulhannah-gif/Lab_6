@@ -49,6 +49,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Верх: поля введення -->
@@ -87,15 +88,15 @@
         <DataGrid x:Name="StudentsDataGrid" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ПІБ" Binding="{Binding FullName}" Width="*"/>
-                <DataGridTextColumn Header="Група" Binding="{Binding GroupNumber}" Width="Auto"/>
-                <DataGridTextColumn Header="Іспит 1" Binding="{Binding Exam1}" Width="Auto"/>
-                <DataGridTextColumn Header="Іспит 2" Binding="{Binding Exam2}" Width="Auto"/>
-                <DataGridTextColumn Header="Іспит 3" Binding="{Binding Exam3}" Width="Auto"/>
+                <DataGridTextColumn Header="Група" Binding="{Binding GroupNumber}" Width="90"/>
+                <DataGridTextColumn Header="Іспит 1" Binding="{Binding Exam1}" Width="70"/>
+                <DataGridTextColumn Header="Іспит 2" Binding="{Binding Exam2}" Width="70"/>
+                <DataGridTextColumn Header="Іспит 3" Binding="{Binding Exam3}" Width="70"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <!-- Низ: кнопки та фільтр -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <WrapPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <TextBlock Text="Мінімальний бал:"/>
             <TextBox x:Name="MinGradeTextBox" Text="60" Style="{StaticResource NarrowTextBox}"/>
             <Button x:Name="FilterButton" Content="Фільтр" Click="FilterButton_Click"/>
@@ -104,6 +105,17 @@
             <Button x:Name="SortButton" Content="Сортувати за групою" Click="SortButton_Click"/>
             <Button x:Name="LoadButton" Content="Завантажити" Click="LoadButton_Click"/>
             <Button x:Name="SaveButton" Content="Зберегти" Click="SaveButton_Click"/>
-        </StackPanel>
+        </WrapPanel>
+
+        <!-- Нова панель: пошук і запити LINQ -->
+        <WrapPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Пошук (ПІБ або група):"/>
+            <TextBox x:Name="SearchTextBox" Width="150"/>
+            <Button x:Name="SearchButton" Content="Знайти" Click="SearchButton_Click"/>
+            <Button x:Name="UniqueGroupsButton" Content="Унікальні групи" Click="UniqueGroupsButton_Click"/>
+            <Button x:Name="TopThreeButton" Content="Топ-3" Click="TopThreeButton_Click"/>
+            <Button x:Name="AverageButton" Content="Середній бал" Click="AverageButton_Click"/>
+            <Button x:Name="GroupButton" Content="Групувати" Click="GroupButton_Click"/>
+        </WrapPanel>
     </Grid>
 </Window>

@@ -123,5 +123,122 @@ namespace Lab_6_Tests
 
             Assert.AreEqual(2, catalog.Students.Count);
         }
+
+        // SearchStudents знаходить студентів за частиною ПІБ
+        [TestMethod]
+        public void SearchStudents_FindsByPartOfName()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("Іваненко Марія", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Петренко Олег", "КН-31", 80, 80, 80));
+            catalog.AddStudent(new Student("Коваленко Анна", "АНД-31", 80, 80, 80));
+
+            catalog.SearchStudents("петр");
+
+            Assert.AreEqual(1, catalog.Students.Count);
+            Assert.AreEqual("Петренко Олег", catalog.Students[0].FullName);
+        }
+
+        // SearchStudents знаходить студентів за частиною групи, без урахування регістру
+        [TestMethod]
+        public void SearchStudents_FindsByPartOfGroup()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("Іваненко Марія", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Петренко Олег", "КН-31", 80, 80, 80));
+            catalog.AddStudent(new Student("Коваленко Анна", "АНД-31", 80, 80, 80));
+
+            catalog.SearchStudents("анд");
+
+            Assert.AreEqual(1, catalog.Students.Count);
+            Assert.AreEqual("Коваленко Анна", catalog.Students[0].FullName);
+        }
+
+        // SearchStudents порожній запит показує всіх студентів
+        [TestMethod]
+        public void SearchStudents_WhenTermIsEmpty_ShowsAllStudents()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("Іваненко Марія", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Петренко Олег", "КН-31", 80, 80, 80));
+            catalog.SearchStudents("петр");
+
+            catalog.SearchStudents("");
+
+            Assert.AreEqual(2, catalog.Students.Count);
+        }
+
+        // ShowUniqueGroups: кожна група зустрічається один раз, відсортовано за алфавітом
+        [TestMethod]
+        public void ShowUniqueGroups_ReturnsEachGroupOnce()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("Іваненко", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Петренко", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Сидоренко", "КН-31", 80, 80, 80));
+            catalog.AddStudent(new Student("Коваленко", "АНД-31", 80, 80, 80));
+
+            catalog.ShowUniqueGroups();
+
+            Assert.AreEqual(3, catalog.Students.Count);
+            Assert.AreEqual("АНД-31", catalog.Students[0].GroupNumber);
+            Assert.AreEqual("КН-31", catalog.Students[1].GroupNumber);
+            Assert.AreEqual("КН-32", catalog.Students[2].GroupNumber);
+        }
+
+        // FindThreeBestStudents залишає трьох студентів з найвищим середнім балом, від більшого до меншого
+        [TestMethod]
+        public void FindThreeBestStudents_ReturnsTopThreeByAverage()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("А", "КН-31", 60, 60, 60));
+            catalog.AddStudent(new Student("Б", "КН-31", 90, 90, 90));
+            catalog.AddStudent(new Student("В", "КН-31", 70, 70, 70));
+            catalog.AddStudent(new Student("Г", "КН-31", 80, 80, 80));
+
+            catalog.FindThreeBestStudents();
+
+            Assert.AreEqual(3, catalog.Students.Count);
+            Assert.AreEqual("Б", catalog.Students[0].FullName);
+            Assert.AreEqual("Г", catalog.Students[1].FullName);
+            Assert.AreEqual("В", catalog.Students[2].FullName);
+        }
+
+        // CalculateAverageGrade: середнє з 60 і 90 дорівнює 75
+        [TestMethod]
+        public void CalculateAverageGrade_ReturnsCorrectValue()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("А", "КН-31", 60, 60, 60));
+            catalog.AddStudent(new Student("Б", "КН-31", 90, 90, 90));
+
+            Assert.AreEqual(75.0, catalog.CalculateAverageGrade(), 0.001);
+        }
+
+        // CalculateAverageGrade для порожнього каталогу повертає 0
+        [TestMethod]
+        public void CalculateAverageGrade_WhenCatalogIsEmpty_ReturnsZero()
+        {
+            var catalog = CreateCatalog();
+
+            Assert.AreEqual(0, catalog.CalculateAverageGrade());
+        }
+
+        // GroupStudentsByGroup: студенти однієї групи йдуть підряд, групи за алфавітом
+        [TestMethod]
+        public void GroupStudentsByGroup_PlacesSameGroupTogether()
+        {
+            var catalog = CreateCatalog();
+            catalog.AddStudent(new Student("А", "КН-32", 80, 80, 80));
+            catalog.AddStudent(new Student("Б", "КН-31", 80, 80, 80));
+            catalog.AddStudent(new Student("В", "КН-32", 80, 80, 80));
+
+            catalog.GroupStudentsByGroup();
+
+            Assert.AreEqual(3, catalog.Students.Count);
+            Assert.AreEqual("КН-31", catalog.Students[0].GroupNumber);
+            Assert.AreEqual("КН-32", catalog.Students[1].GroupNumber);
+            Assert.AreEqual("КН-32", catalog.Students[2].GroupNumber);
+        }
     }
 }

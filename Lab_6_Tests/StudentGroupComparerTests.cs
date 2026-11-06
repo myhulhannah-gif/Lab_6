@@ -18,8 +18,8 @@ namespace Lab_6_Tests
             var s2 = new Student("Петренко", "КН-32", 80, 80, 80);
             var comparer = new StudentGroupComparer();
 
-            Assert.IsTrue(comparer.Compare(s1, s2) < 0, "Група 10 має бути перед групою 12.");
-            Assert.IsTrue(comparer.Compare(s2, s1) > 0, "Група 12 має бути після групи 10.");
+            Assert.IsTrue(comparer.Compare(s1, s2) < 0, "Група АНД-31 має бути перед групою КН-32.");
+            Assert.IsTrue(comparer.Compare(s2, s1) > 0, "Група КН-32 має бути після групи АНД-31.");
         }
 
         // Однакові групи дають 0, навіть якщо ПІБ й оцінки різні
@@ -33,7 +33,7 @@ namespace Lab_6_Tests
             Assert.AreEqual(0, comparer.Compare(s1, s2));
         }
 
-        // В порівнянні з null повертається =0
+        // В порівнянні з null повертається = 0
         [TestMethod]
         public void Compare_WhenFirstStudentIsNull_ReturnsZero()
         {

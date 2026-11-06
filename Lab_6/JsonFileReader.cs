@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
+    // Клас для читання списку об'єктів з JSON-файлу
     public class JsonFileReader : IFileLoader
     {
         public async Task<List<T>?> LoadAsync<T>(string filePath)
@@ -17,8 +18,10 @@ namespace Lab_6
                 return null;
             }
 
+            // Зчитування даних з файлу за шляхом
             var json = await File.ReadAllTextAsync(filePath);
 
+            // Перетворення JSON-тексту на список об'єктів
             return JsonSerializer.Deserialize<List<T>>(json);
         }
     }

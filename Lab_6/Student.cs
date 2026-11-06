@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    public class Student: IComparable<Student>
+    public class Student : IComparable<Student>
     {
         private string fullName;
         private string groupNumber;
@@ -69,7 +69,6 @@ namespace Lab_6
                 exam3 = value;
             }
         }
-
         private static void ValidateGrade(int value, string paramName)
         {
             if (value < 0 || value > 100)
